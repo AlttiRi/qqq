@@ -4,9 +4,9 @@
   "share_target": {
     "action": "./target.html",
     "params": {
-      "title": "title",
-      "text": "text",
-      "url": "url"
+      
+      "text": "text"
+      
     }
   },
   "description": "Web Share Target Demo",
