@@ -35,7 +35,6 @@
     <b><code>window.location</code>:</b> <code id="href"></code><br>
     <b>Title:</b> <code id="title"></code><br>
     <b>Text:</b> <code id="text"></code><br>
-    <b>URL:</b> <code id="url"></code>
 </div>
 
 
@@ -45,7 +44,6 @@
         const parsedUrl = new URL(window.location);
         document.getElementById('title').textContent = parsedUrl.searchParams.get('title');
         document.getElementById('text').textContent = parsedUrl.searchParams.get('text');
-        document.getElementById('url').textContent = parsedUrl.searchParams.get('url');
     });
 </script>
 </body>
