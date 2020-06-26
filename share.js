@@ -9,11 +9,12 @@ if (supported) {
   butShare.addEventListener('click', (e) => {
     console.log('👍', 'butShare-clicked', e);
     e.preventDefault();
+    
     const shareOpts = {
       title: 'Jabberwocky',
-      text: 'Check out this great poem about a Jabberwocky.',
-      url: 'https://en.wikipedia.org/wiki/Jabberwocky',
+      text: 'Check out this great poem about a Jabberwocky.'
     };
+    
     navigator.share(shareOpts)
         .then((e) => {
           const msg = 'navigator.share succeeded.';
