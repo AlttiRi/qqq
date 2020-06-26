@@ -42,7 +42,7 @@
     window.addEventListener('DOMContentLoaded', () => {
         document.getElementById('href').textContent = window.location.href;
         const parsedUrl = new URL(window.location);
-        document.getElementById('title').textContent = parsedUrl.searchParams.get('title');
+        
         document.getElementById('text').textContent = parsedUrl.searchParams.get('text');
     });
 </script>
