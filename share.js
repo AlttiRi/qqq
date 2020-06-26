@@ -11,7 +11,7 @@ if (supported) {
     e.preventDefault();
     
     const shareOpts = {
-      title: 'Jabberwocky',
+      //title: 'Jabberwocky',
       text: 'Check out this great poem about a Jabberwocky. https://github.com/AlttiRi/qqq/commits/master/share.js'
     };
     
