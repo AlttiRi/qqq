@@ -12,7 +12,7 @@ if (supported) {
     
     const shareOpts = {
       title: 'Jabberwocky',
-      text: 'Check out this great poem about a Jabberwocky.'
+      text: 'Check out this great poem about a Jabberwocky. https://github.com/AlttiRi/qqq/commits/master/share.js'
     };
     
     navigator.share(shareOpts)
