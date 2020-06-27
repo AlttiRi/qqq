@@ -29,16 +29,18 @@ self.addEventListener('fetch', async function(event) {
         const text = formData.get('text') || '';
         // const media = formData.get('media') || '';
         const mediaFiles = formData.getAll('media') || [];
-        const names = mediaFiles.map(file => file.name);
-        const mtimes = mediaFiles.map(file => new Date(file.lastModified));
+        const files = mediaFiles.map(file => JSON.stringify({
+            name: file.name,
+            mtime: file.lastModified,
+            size: file.size,
+            type: file.type,
+        }));
 
 
         // return new Response(event.request.url + `?text=${encodeURIComponent(text)}`);
         return Response.redirect(event.request.url +
             `?text=${encodeURIComponent(text)}` +
-            `&files=${encodeURIComponent(names.toString())}` +
-            `&mtimes=${encodeURIComponent(mtimes.toString())}`
-            , 303);
+            `&files=${encodeURIComponent(files.toString())}`, 303);
         // return fetch(event.request.url + `?text=${encodeURIComponent(text)}`); // bad
     })());
 
