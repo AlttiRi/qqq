@@ -29,7 +29,8 @@ self.addEventListener('fetch', async function(event) {
         const text = formData.get('text') || '';
         // const media = formData.get('media') || '';
         // return fetch(event.request);
-        return new Response(event.request.toString());
+        return new Response(JSON.stringify(event.request, null, " "));
+        // return Response.redirect(responseUrl, 303);;
     })());
 
 });
