@@ -32,9 +32,8 @@ self.addEventListener('fetch', async function(event) {
 
 
         // return new Response(event.request.url + `?text=${encodeURIComponent(text)}`);
-
-        return Response.redirect(event.request.url + `?text=${text}`, 303);
-        // return fetch(event.request.url + `?text=${encodeURIComponent(text)}`);
+        // return Response.redirect(event.request.url + `?text=${text}`, 303);
+        return fetch(event.request.url + `?text=${encodeURI(text)}`); // bad
     })());
 
 });
