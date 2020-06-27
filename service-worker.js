@@ -8,7 +8,7 @@ self.addEventListener('activate', (event) => {
   return self.clients.claim();
 });
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', async function(event) {
     console.log('👷', 'fetch', event);
 
     if (event.request.method !== 'POST') {
