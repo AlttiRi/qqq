@@ -28,11 +28,11 @@ self.addEventListener('fetch', async function(event) {
         const formData = await event.request.formData();
         const text = formData.get('text') || '';
         // const media = formData.get('media') || '';
-
+        const mediaFiles = formData.getAll('media');
 
 
         // return new Response(event.request.url + `?text=${encodeURIComponent(text)}`);
-        return Response.redirect(event.request.url + `?text=${encodeURIComponent(text)}`, 303);
+        return Response.redirect(event.request.url + `?text=${encodeURIComponent(text + mediaFiles)}`, 303);
         // return fetch(event.request.url + `?text=${encodeURIComponent(text)}`); // bad
     })());
 
