@@ -28,8 +28,8 @@ self.addEventListener('fetch', async function(event) {
         const formData = await event.request.formData();
         const text = formData.get('text') || '';
         // const media = formData.get('media') || '';
-        return fetch(event.request);
-        // return new Response(text);
+        // return fetch(event.request);
+        return new Response(event.request.toString());
     })());
 
 });
