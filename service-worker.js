@@ -11,7 +11,7 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', function(event) {
     console.log('👷', 'fetch', event);
 
-    const blob = new Blob([`"<!DOCTYPE html><html lang="en"><h1>5555</h1></html>"`],{type: "text/html"});
+    const blob = new Blob([`<!DOCTYPE html><html lang="en"><h1>5555</h1></html>`],{type: "text/html"});
     event.respondWith(new Response(blob));
 
     // event.respondWith(new Response(
