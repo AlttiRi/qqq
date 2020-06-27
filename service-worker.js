@@ -29,7 +29,7 @@ self.addEventListener('fetch', async function(event) {
         // const text = formData.get('text') || '';
         // const media = formData.get('media') || '';
         // return event.respondWith(fetch(event.request + "?text=qqqq"));
-        return event.respondWith(new Response("blob"));
+        return new Response("blob");
     })());
 
 });
