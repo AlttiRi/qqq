@@ -8,22 +8,24 @@ self.addEventListener('activate', (event) => {
   return self.clients.claim();
 });
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', async function(event) {
     console.log('👷', 'fetch', event);
-
-    // const blob = new Blob([`<!DOCTYPE html><html lang="en"><h1>5555</h1></html>`],{type: "text/html"});
-    // event.respondWith(new Response(blob));
 
     if (event.request.method !== 'POST') {
         event.respondWith(fetch(event.request));
         return;
     }
 
-    event.respondWith((async () => {
-        const formData = await event.request.formData();
-        const text = formData.get('text') || '';
-        const media = formData.get('media') || '';
-        return event.respondWith(fetch(event.request + "?text=qqqq"));
-    })());
+    const formData = await event.request.formData();
+    const blob = new Blob([`<!DOCTYPE html><html lang="en"><h1>5555 ${formData.get('text')}</h1></html>`],{type: "text/html"});
+    event.respondWith(new Response(blob));
+
+
+    // event.respondWith((async () => {
+    //     const formData = await event.request.formData();
+    //     const text = formData.get('text') || '';
+    //     const media = formData.get('media') || '';
+    //     return event.respondWith(fetch(event.request + "?text=qqqq"));
+    // })());
 
 });
