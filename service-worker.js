@@ -30,12 +30,15 @@ self.addEventListener('fetch', async function(event) {
         // const media = formData.get('media') || '';
         const mediaFiles = formData.getAll('media') || [];
         const names = mediaFiles.map(file => file.name);
-        const mtimes = mediaFiles.map(file => file.lastModified);
+        const mtimes = mediaFiles.map(file => new Date(file.lastModified));
 
 
         // return new Response(event.request.url + `?text=${encodeURIComponent(text)}`);
-        return Response.redirect(event.request.url + `?text=${encodeURIComponent(text)}` +
-            `&files=${encodeURIComponent(names.toString() + mtimes)}`, 303);
+        return Response.redirect(event.request.url +
+            `?text=${encodeURIComponent(text)}` +
+            `&files=${encodeURIComponent(names.toString())}` +
+            `&mtimes=${encodeURIComponent(mtimes.toString())}`
+            , 303);
         // return fetch(event.request.url + `?text=${encodeURIComponent(text)}`); // bad
     })());
 
