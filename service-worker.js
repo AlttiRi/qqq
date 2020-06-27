@@ -10,4 +10,5 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', function(event) {
   console.log('👷', 'fetch', event);
+  event.respondWith(new Response("565656"));
 });
