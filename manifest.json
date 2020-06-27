@@ -6,8 +6,13 @@
 
     "params": {
       "text": "text"
-    }
-
+    },
+    "files": [
+      {
+        "name": "media",
+        "accept": ["image/*"]
+      }
+    ]
   },
   "description": "Web Share Target Demo",
   "icons": [
