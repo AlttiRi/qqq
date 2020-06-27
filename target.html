@@ -34,6 +34,7 @@
 <div>
     <b><code>window.location</code>:</b> <code id="href"></code><br>
     <b>Text:</b> <code id="text"></code><br>
+    <b>Names:</b> <code id="files"></code><br>
 </div>
 
 
@@ -43,6 +44,7 @@
         const parsedUrl = new URL(window.location);
         
         document.getElementById('text').textContent = parsedUrl.searchParams.get('text');
+        document.getElementById('files').textContent = parsedUrl.searchParams.get('files');
     });
 </script>
 </body>
