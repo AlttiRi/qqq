@@ -10,5 +10,9 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', function(event) {
   console.log('👷', 'fetch', event);
-  event.respondWith(new Response("<!DOCTYPE html><html lang=\"en\"><h1>1234567</h1></html>"));
+  event.respondWith(new Response(
+      "<!DOCTYPE html><html lang=\"en\"><h1>1234567</h1></html>",
+      {
+        status: 200,
+      }));
 });
