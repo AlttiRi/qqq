@@ -26,10 +26,10 @@ self.addEventListener('fetch', async function(event) {
 
     event.respondWith((async () => {
         const formData = await event.request.formData();
-        // const text = formData.get('text') || '';
+        const text = formData.get('text') || '';
         // const media = formData.get('media') || '';
         // return event.respondWith(fetch(event.request + "?text=qqqq"));
-        return new Response("blob");
+        return new Response(text);
     })());
 
 });
