@@ -16,9 +16,9 @@ self.addEventListener('fetch', async function(event) {
         return;
     }
 
-    const formData = await event.request.formData();
-    const text = formData.get('text') || '';
-    alert(text);
+    // const formData = await event.request.formData();
+    // const text = formData.get('text') || '';
+    // alert(text);
     let a = "hhh";
     const blob = new Blob([`<!DOCTYPE html><html lang="en"><h1>${a}</h1></html>`],{type: "text/html"});
     event.respondWith(new Response("blob"));
