@@ -21,7 +21,7 @@ self.addEventListener('fetch', async function(event) {
     alert(text);
     let a = "hhh";
     const blob = new Blob([`<!DOCTYPE html><html lang="en"><h1>${a}</h1></html>`],{type: "text/html"});
-    event.respondWith(new Response(blob));
+    event.respondWith(new Response("blob"));
 
 
     // event.respondWith((async () => {
