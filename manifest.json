@@ -3,15 +3,15 @@
   "name": "Share Target Test",
   "share_target": {
     "action": "./target.html",
-    "method": "GET",
-    "enctype": "application/x-www-form-urlencoded",
+    "method": "POST",
+    "enctype": "multipart/form-data",
     "params": {
       "text": "text"
     },
     "files": [
       {
-        "name": "image",
-        "accept": "image/*"
+        "name": "media",
+        "accept": ["image/*"]
       }
     ]
   },
