@@ -3,6 +3,8 @@
   "name": "Share Target Test",
   "share_target": {
     "action": "./target.html",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
     "params": {
       "text": "text"
     }
