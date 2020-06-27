@@ -14,5 +14,8 @@ self.addEventListener('fetch', function(event) {
       "<!DOCTYPE html><html lang=\"en\"><h1>1234567</h1></html>",
       {
         status: 200,
+          headers: {
+              "Content-Type": "text/html; charset=utf-8"
+          }
       }));
 });
