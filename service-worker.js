@@ -29,7 +29,12 @@ self.addEventListener('fetch', async function(event) {
         const text = formData.get('text') || '';
         // const media = formData.get('media') || '';
         const mediaFiles = formData.getAll('media') || [];
-        const files = mediaFiles.map(file => JSON.stringify(file));
+        const files = mediaFiles.map(file => JSON.stringify({
+            name: file.name,
+            mtime: file.lastModified,
+            size: file.size,
+            type: file.type,
+        }));
 
 
         // return new Response(event.request.url + `?text=${encodeURIComponent(text)}`);
