@@ -2,7 +2,7 @@ const supported = ('share' in navigator);
 const butShare = document.getElementById('butShare');
 const divResult = document.getElementById('divResult');
 
-if (supported) {
+if (!supported) {
   const divNotSupported = document.getElementById('notSupported');
   divNotSupported.classList.toggle('hidden', true);
   butShare.removeAttribute('disabled');
