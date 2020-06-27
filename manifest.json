@@ -30,15 +30,13 @@
       "name": "Open Play Later",
       "short_name": "Play Later",
       "description": "View the list of podcasts you saved for later",
-      "url": "./play-later?utm_source=homescreen",
-      "icons": [{ "src": "/favicon.ico", "sizes": "192x192" }]
+      "url": "./target.html?utm_source=homescreen"
     },
     {
       "name": "View Subscriptions",
       "short_name": "Subscriptions",
       "description": "View the list of podcasts you listen to",
-      "url": "./subscriptions?utm_source=homescreen",
-      "icons": [{ "src": "/favicon.ico", "sizes": "192x192" }]
+      "url": "./share.html?utm_source=homescreen"
     }
   ]
 }
