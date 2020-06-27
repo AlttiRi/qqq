@@ -26,12 +26,12 @@ self.addEventListener('fetch', async function(event) {
 
     event.respondWith((async () => {
         const formData = await event.request.formData();
-        // const text = formData.get('text') || '';
+        const text = formData.get('text') || '';
         // const media = formData.get('media') || '';
         // return fetch(event.request);
 
         // return new Response(event.request.url);
-        return Response.redirect(event.request.url + "?text=jiojio", 303);
+        return Response.redirect(event.request.url + `?text=${text}`, 303);
     })());
 
 });
