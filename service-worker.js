@@ -26,10 +26,10 @@ self.addEventListener('fetch', async function(event) {
 
     event.respondWith((async () => {
         const formData = await event.request.formData();
-        const text = formData.get('text') || '';
+        // const text = formData.get('text') || '';
         // const media = formData.get('media') || '';
         // return fetch(event.request);
-        return new Response(JSON.stringify(event.request, null, " "));
+        return new Response(event.request.url);
         // return Response.redirect(responseUrl, 303);;
     })());
 
