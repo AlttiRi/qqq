@@ -31,7 +31,7 @@ self.addEventListener('fetch', async function(event) {
         // return fetch(event.request);
 
         // return new Response(event.request.url);
-        return Response.redirect(event.request.url, 303);
+        return Response.redirect(event.request.url + "?text=jiojio", 303);
     })());
 
 });
