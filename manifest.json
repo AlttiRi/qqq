@@ -6,13 +6,7 @@
     "method": "GET",
     "enctype": "application/x-www-form-urlencoded",
     "params": {
-      "text": "text",
-      "files": [
-        {
-          "name": "image",
-          "accept": "image/*"
-        }
-      ]
+      "text": "text"
     }
   },
   "description": "Web Share Target Demo",
