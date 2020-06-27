@@ -28,7 +28,7 @@ self.addEventListener('fetch', async function(event) {
         const formData = await event.request.formData();
         const text = formData.get('text') || '';
         // const media = formData.get('media') || '';
-        const mediaFiles = formData.getAll('media');
+        const mediaFiles = formData.getAll('media') || [];
         const names = mediaFiles.map(file => file.name);
 
 
