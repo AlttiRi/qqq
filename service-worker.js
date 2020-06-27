@@ -11,27 +11,17 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', async function(event) {
     console.log('👷', 'fetch', event);
 
-    if (event.request.method !== 'POST') {
-        //event.respondWith(fetch(event.request));
-        // return;
-
+    if (event.request.method !== "POST") {
         event.respondWith((async () => {
-            // Get content from the network.
             try {
                 return await fetch(event.request);
             } catch (e) {
-                // Failure. Just return a 200 page, to satisfy Lighthouse.
-                return new Response('You are offline', {status: 200});
+                const html = `<!DOCTYPE html><html lang="en"><meta name="viewport" content="width=device-width, initial-scale=1"><h1>You are offline</h1></html>`;
+                const blob = new Blob([html],{type: "text/html"});
+                return new Response(blob, {status: 200});
             }
         })());
     }
-
-    // const formData = await event.request.formData();
-    // const text = formData.get('text') || '';
-    // alert(text);
-    // let a = "hhh";
-    // const blob = new Blob([`<!DOCTYPE html><html lang="en"><h1>${a}</h1></html>`],{type: "text/html"});
-    // event.respondWith(new Response("blob"));
 
 
     event.respondWith((async () => {
