@@ -51,8 +51,8 @@ self.addEventListener("fetch", async function(event) {
         // return new Response(event.request.url + `?text=${encodeURIComponent(text)}`);
         return Response.redirect(event.request.url +
             `?text=${encodeURIComponent(text)}` +
-            `?title=${encodeURIComponent(title)}` +
-            `?url=${encodeURIComponent(url)}` +
+            `&title=${encodeURIComponent(title)}` +
+            `&url=${encodeURIComponent(url)}` +
             `&files=${encodeURIComponent(files.toString())}`, 303);
         // return fetch(event.request.url + `?text=${encodeURIComponent(text)}`); // bad
     })());
