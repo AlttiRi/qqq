@@ -67,12 +67,10 @@
 
         function checkCanShare(data) {
             const can = navigator.canShare && navigator.canShare(data);
-            alert(can)
             const canShareElem = document.querySelector("#can-share");
             if (!can) {
                 canShareElem.classList.remove("hidden");
                 canShareElem.textContent += JSON.stringify(data);
-                alert("hh")
             }
         }
 
