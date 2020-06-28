@@ -1,55 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <title>Web Share</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="./style.css">
-    
-    <!-- import the webpage's javascript file -->
-    <script src="./share.js?1" defer></script>
-    <script src="./common.js" defer></script>
-    <link rel="manifest" href="./manifest.json?1332n3">
-    <meta name="theme-color" content="#4a148c">
-  </head>  
-  <body>
-    <h1>
-      Web Share API....
-    </h1>
-    <p id="requireHTTPS" class="hidden">
-      <b>STOP!</b> This page <b>must</b> be served over HTTPS.
-      Please <a>reload this page via HTTPS</a>.
-    </p>
 
-    <p>
-      The Web Share API, allows sites to share links and text to other
-      apps via the system provided share picker.
-    </p>
-    
-    <p id="notSupported">
-      <b>Sorry!</b> This browser doesn't support the Web Share API,
-      which required for this demo.
-    </p>  
-    
-<pre>
-  .
-const shareOpts = {
-  text: 'Check out this great poem about a Jabberwocky.';
-};
-navigator.share(shareOpts);
-</pre>
-    
-    <p>
-      <button type="button" id="butShare" disabled>
-        Share
-      </button>
-    </p>
-    
-    <div id="divResult">
-      
-    </div>
-  </body>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#ffcc00">
+
+    <link rel="stylesheet" href="./style.css">
+
+    <script type="module">
+        const serviceWorkerSupported = "serviceWorker" in navigator;
+        const isSecureHost = location.protocol === "http:" && (location.hostname !== "127.0.0.1" || location.hostname !== "localhost");
+
+        if(!isSecureHost) {
+            document.querySelector("#https-note").classList.remove("hidden");
+        }
+
+        if (serviceWorkerSupported) {
+            console.log("Registering of service worker");
+            navigator.serviceWorker
+                .register("./service-worker.js")
+                .then(_ => {
+                    document.querySelector("#sw-reg-note").classList.remove("hidden");
+                    console.log("Service worker was registered");
+                });
+        } else {
+            document.querySelector("#sw-note").classList.remove("hidden");
+        }
+    </script>
+
+    <script type="module">
+        const shareSupported = "share" in navigator;
+
+        if(shareSupported) {
+            const shareButton = document.querySelector("#share-button");
+            const resultElem = document.querySelector("#result");
+            const text = "Qwerty: https://example.com/";
+
+            shareButton.addEventListener("click", async event => {
+                event.preventDefault();
+
+                // const shareData = {
+                //     text
+                // };
+
+                const file = new File([new Uint8Array([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A])], "123.png", {type: "image/png"});
+                const shareData = {
+                    title: "MDN",
+                    text: "Learn web development on MDN!",
+                    url: "https://developer.mozilla.org",
+                    //file // files
+                };
+
+                try {
+                    await navigator.share(shareData);
+                    resultElem.textContent = "`navigator.share` succeeded.";
+                } catch (error) {
+                    const msg = "`navigator.share` failed";
+                    resultElem.textContent = `${msg}\n${JSON.stringify(err)}`;
+                }
+
+            });
+        } else {
+            document.querySelector("#share-note").classList.remove("hidden");
+            document.querySelector("#share-button").setAttribute("disabled", "");
+        }
+
+
+    </script>
+</head>
+<body>
+    <h1>Web Share API demo</h1>
+
+    <p id="https-note" class="hidden warning">This page requires to be served over HTTPS.</p>
+    <p id="sw-note" class="hidden warning">Service worker is not supported.</p>
+    <p id="sw-reg-note" class="hidden">Service worker was registered.</p>
+    <p id="share-note" class="hidden warning">Web Share API is not supported.</p>
+
+    <button id="share-button">Share</button>
+
+    <div id="result"></div>
+</body>
 </html>

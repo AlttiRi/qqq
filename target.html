@@ -3,49 +3,54 @@
 <head>
     <title>Web Share Target</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="./style.css">
-
-    <!-- import the webpage's javascript file -->
-    <script src="./target.js" defer></script>
-    <script src="./common.js" defer></script>
     <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#4a148c">
+
+    <link rel="stylesheet" href="./style.css">
+
+    <script type="module">
+        const serviceWorkerSupported = "serviceWorker" in navigator;
+        const isSecureHost = location.protocol === "http:" && (location.hostname !== "127.0.0.1" || location.hostname !== "localhost");
+
+        if(!isSecureHost) {
+            document.querySelector("#https-note").classList.remove("hidden");
+        }
+
+        if (serviceWorkerSupported) {
+            console.log("Registering of service worker");
+            navigator.serviceWorker
+                .register("./service-worker.js")
+                .then(_ => {
+                    document.querySelector("#sw-reg-note").classList.remove("hidden");
+                    console.log("Service worker was registered");
+                });
+        } else {
+            document.querySelector("#sw-note").classList.remove("hidden");
+        }
+    </script>
+
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            document.querySelector("#href").textContent = window.location.href;
+            const parsedUrl = new URL(window.location);
+
+            document.querySelector("#text").textContent = parsedUrl.searchParams.get("text");
+            document.querySelector("#files").textContent = parsedUrl.searchParams.get("files");
+        });
+    </script>
 </head>
 <body>
-<h1>
-    Web Share Target (v1)
-</h1>
-<p id="requireHTTPS" class="hidden">
-    <b>STOP!</b> This page <b>must</b> be served over HTTPS.
-    Please <a>reload this page via HTTPS</a>.
-</p>
-
-<p>
-    The Web Share Target API allows installed web apps
-    to register with the underlying OS as a share target
-    to receive shared content from either the Web Share
-    API or system events, like the OS-level share button.
-</p>
-
-<div>
-    <b><code>window.location</code>:</b> <code id="href"></code><br>
-    <b>Text:</b> <code id="text"></code><br>
-    <b>Files:</b> <code id="files"></code><br>
-</div>
+    <h1>Web Share Target</h1>
+    <p id="https-note" class="hidden warning">This page requires to be served over HTTPS.</p>
+    <p id="sw-reg-note" class="hidden">Service worker was registered.</p>
 
 
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        document.getElementById('href').textContent = window.location.href;
-        const parsedUrl = new URL(window.location);
-        
-        document.getElementById('text').textContent = parsedUrl.searchParams.get('text');
-        document.getElementById('files').textContent = parsedUrl.searchParams.get('files');
-    });
-</script>
+    <div>
+        <b><code>window.location</code>:</b> <code id="href"></code><br>
+        <b>Text:</b> <code id="text"></code><br>
+        <b>Files:</b> <code id="files"></code><br>
+    </div>
+
 </body>
 </html>
