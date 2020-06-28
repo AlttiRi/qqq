@@ -45,8 +45,8 @@ self.addEventListener("fetch", async function(event) {
         }));
 
         const redirectUrl = new URL(event.request.url);
-        redirectUrl.searchParams.append("text", formData.toString());
-        redirectUrl.searchParams.append("files", JSON.stringify(formData));
+        redirectUrl.searchParams.append("text", text);
+        redirectUrl.searchParams.append("files", files.toString());
 
         return Response.redirect(redirectUrl.toString(), 303);
     })());
