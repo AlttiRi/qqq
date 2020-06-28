@@ -14,6 +14,11 @@ body {
 .hidden {
     display: none;
 }
+body > div {
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
 
 .warning {
     color: #ff4000;
