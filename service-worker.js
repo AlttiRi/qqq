@@ -35,8 +35,8 @@ self.addEventListener("fetch", async function(event) {
     return event.respondWith((async () => {
         const formData = await event.request.formData();
         const text = formData.get("text") || "";
-        const title = formData.get("title") || "";
-        const url = formData.get("url") || "";
+        // const title = formData.get("title") || "";
+        // const url = formData.get("url") || "";
 
         const mediaFiles = formData.getAll("medias") || [];
         const files = mediaFiles.map(file => JSON.stringify({
@@ -46,11 +46,11 @@ self.addEventListener("fetch", async function(event) {
             type: file.type,
         }));
 
-        return Response.redirect(event.request.url +
-            `?text=${encodeURIComponent(text)}` +
-            `&title=${encodeURIComponent(title)}` +
-            `&url=${encodeURIComponent(url)}` +
-            `&files=${encodeURIComponent(files.toString())}`, 303);
+        const redirectUrl = new URL(event.request.url);
+        redirectUrl.searchParams.append("text", text);
+        redirectUrl.searchParams.append("files", files.toString());
+
+        return Response.redirect(redirectUrl.toString(), 303);
 
         // return new Response(event.request.url + `?text=${encodeURIComponent(text)}`);
         // return fetch(event.request.url + `?text=${encodeURIComponent(text)}`); // bad

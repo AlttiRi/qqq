@@ -12,9 +12,7 @@
           "name": "medias",
           "accept": ["image/*"]
         }
-      ],
-      "title": "title",
-      "url": "url"
+      ]
     }
   },
   "description": "Web Share Target Demo",
