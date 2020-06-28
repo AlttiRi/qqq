@@ -48,6 +48,8 @@
                     files: [file]
                 };
 
+                checkCanShare(shareData);
+
                 const resultElem = document.querySelector("#result");
                 try {
                     await navigator.share(shareData);
@@ -63,6 +65,14 @@
             document.querySelector("#share-button").setAttribute("disabled", "");
         }
 
+        function checkCanShare(data) {
+            const can = navigator.canShare && navigator.canShare(data);
+            const canShareElem = document.querySelector("#can-share")
+            if (!can) {
+                canShareElem.classList.remove("hidden");
+                canShareElem.textContent += JSON.stringify(data);
+            }
+        }
 
     </script>
 </head>
@@ -73,6 +83,7 @@
     <p id="sw-note" class="hidden warning">Service worker is not supported.</p>
     <p id="sw-reg-note" class="hidden">Service worker was registered.</p>
     <p id="share-note" class="hidden warning">Web Share API is not supported.</p>
+    <p id="can-share" class="hidden warning">Impossible to share this object</p>
 
     <button id="share-button">Share</button>
 
