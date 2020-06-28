@@ -39,16 +39,16 @@
             const shareButton = document.querySelector("#share-button");
             const text = "Qwerty: https://example.com/";
 
+            const file = new File([new Uint8Array([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A])], "0asd123.png", {type: "image/png"});
+            const shareData = {
+                text,
+                files: [file]
+            };
+
+            checkCanShare(shareData);
+
             shareButton.addEventListener("click", async event => {
                 event.preventDefault();
-
-                const file = new File([new Uint8Array([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A])], "0asd123.png", {type: "image/png"});
-                const shareData = {
-                    text: "Learn web development on MDN!",
-                    files: [file]
-                };
-
-                checkCanShare(shareData);
 
                 const resultElem = document.querySelector("#result");
                 try {
@@ -77,7 +77,7 @@
     </script>
 </head>
 <body>
-    <h1>Web Share API demo.</h1>
+    <h1>Web Share API demo</h1>
 
     <p id="https-note" class="hidden warning">This page requires to be served over HTTPS.</p>
     <p id="sw-note" class="hidden warning">Service worker is not supported.</p>
