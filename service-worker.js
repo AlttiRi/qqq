@@ -35,10 +35,8 @@ self.addEventListener("fetch", async function(event) {
     return event.respondWith((async () => {
         const formData = await event.request.formData();
         const text = formData.get("text") || "";
-        // const title = formData.get("title") || "";
-        // const url = formData.get("url") || "";
 
-        const mediaFiles = formData.getAll("medias") || [];
+        const mediaFiles = formData.getAll("media") || [];
         const files = mediaFiles.map(file => JSON.stringify({
             name: file.name,
             mtime: file.lastModified,
