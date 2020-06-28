@@ -37,7 +37,6 @@
 
         if(shareSupported) {
             const shareButton = document.querySelector("#share-button");
-            const resultElem = document.querySelector("#result");
             const text = "Qwerty: https://example.com/";
 
             shareButton.addEventListener("click", async event => {
@@ -55,6 +54,7 @@
                     file // files
                 };
 
+                const resultElem = document.querySelector("#result");
                 try {
                     await navigator.share(shareData);
                     resultElem.textContent = "`navigator.share` succeeded.";
