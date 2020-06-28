@@ -49,9 +49,6 @@ self.addEventListener("fetch", async function(event) {
         redirectUrl.searchParams.append("files", files.toString());
 
         return Response.redirect(redirectUrl.toString(), 303);
-
-        // return new Response(event.request.url + `?text=${encodeURIComponent(text)}`);
-        // return fetch(event.request.url + `?text=${encodeURIComponent(text)}`); // bad
     })());
 
 });
