@@ -42,17 +42,17 @@
             shareButton.addEventListener("click", async event => {
                 event.preventDefault();
 
-                const shareData = {
-                    text
-                };
+                // const shareData = {
+                //     text
+                // };
 
                 const file = new File([new Uint8Array([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A])], "123.png", {type: "image/png"});
-                // const shareData = {
-                //     title: "MDN",
-                //     text: "Learn web development on MDN!",
-                //     url: "https://developer.mozilla.org",
-                //     file // files
-                // };
+                const shareData = {
+                    title: "MDN",
+                    text: "Learn web development on MDN!",
+                    url: "https://developer.mozilla.org",
+                    file // files
+                };
 
                 const resultElem = document.querySelector("#result");
                 try {
