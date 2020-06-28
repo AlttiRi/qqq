@@ -9,7 +9,7 @@
       "text": "text",
       "files": [
         {
-          "name": "media",
+          "name": "images",
           "accept": ["image/*"]
         }
       ],

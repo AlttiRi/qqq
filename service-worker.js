@@ -38,8 +38,7 @@ self.addEventListener("fetch", async function(event) {
         const title = formData.get("title") || "";
         const url = formData.get("url") || "";
 
-        // const media = formData.get("media") || "";
-        const mediaFiles = formData.getAll("media") || [];
+        const mediaFiles = formData.getAll("images") || [];
         const files = mediaFiles.map(file => JSON.stringify({
             name: file.name,
             mtime: file.lastModified,
@@ -47,13 +46,13 @@ self.addEventListener("fetch", async function(event) {
             type: file.type,
         }));
 
-
-        // return new Response(event.request.url + `?text=${encodeURIComponent(text)}`);
         return Response.redirect(event.request.url +
             `?text=${encodeURIComponent(text)}` +
             `&title=${encodeURIComponent(title)}` +
             `&url=${encodeURIComponent(url)}` +
             `&files=${encodeURIComponent(files.toString())}`, 303);
+
+        // return new Response(event.request.url + `?text=${encodeURIComponent(text)}`);
         // return fetch(event.request.url + `?text=${encodeURIComponent(text)}`); // bad
     })());
 
