@@ -19,6 +19,7 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", async function(event) {
     console.log("👷", "fetch", event);
+    
 
     if (event.request.method !== "POST") {
         return event.respondWith((async () => {

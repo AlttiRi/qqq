@@ -13,7 +13,7 @@
 
     <script type="module">
         const serviceWorkerSupported = "serviceWorker" in navigator;
-        const isSecureHost = location.protocol === "https:" || location.hostname !== "127.0.0.1" || location.hostname !== "localhost";
+        const isSecureHost = location.protocol === "https:" || location.hostname === "127.0.0.1" || location.hostname === "localhost";
 
         if(!isSecureHost) {
             document.querySelector("#https-note").classList.remove("hidden");
@@ -27,6 +27,9 @@
                     document.querySelector("#sw-reg-note").classList.remove("hidden");
                     console.log("Service worker was registered");
                 });
+
+            navigator.serviceWorker.addEventListener("message", message => console.log(message));
+
         } else {
             document.querySelector("#sw-note").classList.remove("hidden");
         }
