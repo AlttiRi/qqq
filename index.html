@@ -43,6 +43,7 @@
         });
         function showInstallPromotion() {
             console.log("showInstallPromotion");
+            alert("showInstallPromotion");
 
             const installButton = document.querySelector("#install-pwa-button");
             installButton.classList.remove("hidden");
@@ -59,7 +60,7 @@
             }, {once: true})
         }
         window.addEventListener("appinstalled", event => {
-            alert("appinstalled")
+            alert("appinstalled");
             const installButton = document.querySelector("#install-pwa-button");
             installButton.classList.add("hidden");
         });
