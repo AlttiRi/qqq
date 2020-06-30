@@ -42,14 +42,17 @@
             showInstallPromotion();
         });
         function showInstallPromotion() {
+            console.log("showInstallPromotion");
+
             const installButton = document.querySelector("#install-pwa-button");
             installButton.classList.remove("hidden");
             installButton.addEventListener("click", async event => {
                 deferredPrompt.prompt();
-                installButton.classList.add("hidden");
+                //installButton.classList.add("hidden");
                 const choiceResult = await deferredPrompt.userChoice;
                 if (choiceResult.outcome === "accepted") {
                     console.log("User accepted the install prompt");
+                    installButton.classList.add("hidden");
                 } else {
                     console.log("User dismissed the install prompt");
                 }
