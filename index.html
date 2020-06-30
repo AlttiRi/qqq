@@ -41,6 +41,7 @@
             event.preventDefault();
             deferredPrompt = event;
             if (installed) {
+                alert("installed");
                 return;
             }
             showInstallPromotion();
@@ -53,7 +54,6 @@
             installButton.classList.remove("hidden");
             installButton.addEventListener("click", async event => {
                 deferredPrompt.prompt();
-                //installButton.classList.add("hidden");
                 const choiceResult = await deferredPrompt.userChoice;
                 if (choiceResult.outcome === "accepted") {
                     console.log("User accepted the install prompt");
@@ -64,12 +64,6 @@
                 }
             }, {once: true})
         }
-        // window.addEventListener("appinstalled", event => {
-        //     alert("appinstalled");
-        //     const installButton = document.querySelector("#install-pwa-button");
-        //     installButton.classList.add("hidden");
-        // });
-
 
     </script>
 
