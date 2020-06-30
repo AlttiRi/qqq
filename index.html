@@ -44,7 +44,6 @@
         function showInstallPromotion() {
             const installButton = document.querySelector("#install-pwa-button");
             installButton.classList.remove("hidden");
-
             installButton.addEventListener("click", async event => {
                 deferredPrompt.prompt();
                 const choiceResult = await deferredPrompt.userChoice;
