@@ -45,16 +45,15 @@
             const installButton = document.querySelector("#install-button");
             installButton.classList.remove("hidden");
 
-            installButton.addEventListener("click", (e) => {
+            installButton.addEventListener("click", async event => {
                 installButton.classList.add("hidden");
                 deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === "accepted") {
-                        alert("User accepted the install prompt");
-                    } else {
-                        alert("User dismissed the install prompt");
-                    }
-                });
+                const choiceResult = await deferredPrompt.userChoice;
+                if (choiceResult.outcome === "accepted") {
+                    alert("User accepted the install prompt");
+                } else {
+                    alert("User dismissed the install prompt");
+                }
             });
         }
 
