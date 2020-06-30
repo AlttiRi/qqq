@@ -96,17 +96,17 @@
         }
 
         function checkCanShare(data) {
-            if (!navigator?.canShare(data)) {
-                const canShareElem = document.querySelector("#can-share");
-                canShareElem.classList.remove("hidden");
-                canShareElem.textContent += JSON.stringify(data);
-            }
+            // if (!navigator?.canShare(data)) {
+            //     const canShareElem = document.querySelector("#can-share");
+            //     canShareElem.classList.remove("hidden");
+            //     canShareElem.textContent += JSON.stringify(data);
+            // }
         }
 
     </script>
 </head>
 <body>
-    <h1>Web Share API demo1</h1>
+    <h1>Web Share API demo2</h1>
 
     <p id="https-note" class="hidden warning">This page requires to be served over HTTPS.</p>
     <p id="sw-note" class="hidden warning">Service worker is not supported.</p>
