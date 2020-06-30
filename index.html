@@ -46,11 +46,10 @@
             installButton.classList.remove("hidden");
             installButton.addEventListener("click", async event => {
                 deferredPrompt.prompt();
+                installButton.classList.add("hidden");
                 const choiceResult = await deferredPrompt.userChoice;
                 if (choiceResult.outcome === "accepted") {
 
-                    installButton.classList.add("warning");
-                    installButton.classList.add("hidden");
                     alert("accepted4")
                 }
             }, {once: true});
