@@ -52,12 +52,16 @@
                 const choiceResult = await deferredPrompt.userChoice;
                 if (choiceResult.outcome === "accepted") {
                     console.log("User accepted the install prompt");
-                    installButton.classList.add("hidden");
+                    // installButton.classList.add("hidden");
                 } else {
                     console.log("User dismissed the install prompt");
                 }
-            }, {once: true});
+            }, {once: true})
         }
+        window.addEventListener("appinstalled", event => {
+            const installButton = document.querySelector("#install-pwa-button");
+            installButton.classList.add("hidden");
+        });
 
 
     </script>
