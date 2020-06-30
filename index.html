@@ -48,6 +48,7 @@
                 deferredPrompt.prompt();
                 const choiceResult = await deferredPrompt.userChoice;
                 if (choiceResult.outcome === "accepted") {
+                    alert("accepted")
                     installButton.classList.add("hidden");
                 }
             }, {once: true});
