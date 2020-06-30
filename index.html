@@ -39,7 +39,7 @@
             event.preventDefault();
             deferredPrompt = event;
             showInstallPromotion();
-        });
+        }, {once: true});
 
         function showInstallPromotion() {
             const installButton = document.querySelector("#install-button");
