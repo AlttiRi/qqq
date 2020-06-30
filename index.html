@@ -39,7 +39,7 @@
             event.preventDefault();
             deferredPrompt = event;
             showInstallPromotion();
-        }, {once: true});
+        });
 
         function showInstallPromotion() {
             const installButton = document.querySelector("#install-button");
@@ -54,7 +54,7 @@
                 } else {
                     alert("User dismissed the install prompt");
                 }
-            });
+            }, {once: true});
         }
 
 
