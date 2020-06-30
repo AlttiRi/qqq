@@ -58,17 +58,17 @@
                 if (choiceResult.outcome === "accepted") {
                     console.log("User accepted the install prompt");
                     installed = true;
-                    // installButton.classList.add("hidden");
+                    installButton.classList.add("hidden");
                 } else {
                     console.log("User dismissed the install prompt");
                 }
             }, {once: true})
         }
-        window.addEventListener("appinstalled", event => {
-            alert("appinstalled");
-            const installButton = document.querySelector("#install-pwa-button");
-            installButton.classList.add("hidden");
-        });
+        // window.addEventListener("appinstalled", event => {
+        //     alert("appinstalled");
+        //     const installButton = document.querySelector("#install-pwa-button");
+        //     installButton.classList.add("hidden");
+        // });
 
 
     </script>
