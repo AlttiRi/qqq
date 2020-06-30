@@ -69,7 +69,7 @@
             const shareButton = document.querySelector("#share-button");
             const text = "Qwerty: https://example.com/";
 
-            const file = new File([new Uint8Array([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A])], "0asd123.png", {type: "image/png"});
+            const file = new File([new Uint8Array([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A])], "0asd123.png", {type: "pdf/png"});
             const shareData = {
                 text,
                 files: [file]
@@ -97,7 +97,7 @@
 
         function checkCanShare(data) {
             if (navigator.canShare && !navigator.canShare(data)) {
-                const canShareElem = document.querySelector("#can-share");
+                const canShareElem = document.querySelector("#cant-share");
                 canShareElem.classList.remove("hidden");
                 canShareElem.textContent += JSON.stringify(data);
             }
@@ -112,7 +112,7 @@
     <p id="sw-note" class="hidden warning">Service worker is not supported.</p>
     <p id="sw-reg-note" class="hidden">Service worker was registered.</p>
     <p id="share-note" class="hidden warning">Web Share API is not supported.</p>
-    <p id="can-share" class="hidden warning">Impossible to share this object: </p>
+    <p id="cant-share" class="hidden warning">Impossible to share this object: </p>
 
     <button id="share-button">Share</button>
     <button id="install-pwa-button" class="hidden">Install as PWA</button>
