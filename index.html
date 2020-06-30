@@ -97,6 +97,7 @@
             }
 
             function checkCanShare(data) {
+                alert("checkCanShare in")
                 if (navigator.canShare && !navigator.canShare(data)) {
                     const canShareElem = document.querySelector("#cant-share");
                     canShareElem.classList.remove("hidden");
