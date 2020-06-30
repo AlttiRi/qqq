@@ -44,14 +44,13 @@
         function showInstallPromotion() {
             const installButton = document.querySelector("#install-button");
             installButton.classList.remove("hidden");
-            alert("showInstallPromotion");
 
             installButton.addEventListener("click", async event => {
-                installButton.classList.add("hidden");
                 deferredPrompt.prompt();
                 const choiceResult = await deferredPrompt.userChoice;
                 if (choiceResult.outcome === "accepted") {
                     alert("User accepted the install prompt");
+                    installButton.classList.add("hidden");
                 } else {
                     alert("User dismissed the install prompt");
                 }
