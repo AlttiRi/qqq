@@ -36,16 +36,27 @@
 
 
         let deferredPrompt;
-        let installed = false;
-        window.addEventListener("beforeinstallprompt", event => {
-            event.preventDefault();
-            deferredPrompt = event;
-            if (installed) {
-                alert("installed");
-                return;
-            }
-            showInstallPromotion();
-        });
+        // let installed = false;
+        // window.addEventListener("beforeinstallprompt", event => {
+        //     event.preventDefault();
+        //     deferredPrompt = event;
+        //     // if (installed) {
+        //     //     alert("installed");
+        //     //     return;
+        //     // }
+        //     showInstallPromotion();
+        // }, {once: true});
+
+        function installPromptHandler() {
+            window.addEventListener("beforeinstallprompt", event => {
+                event.preventDefault();
+                deferredPrompt = event;
+
+                showInstallPromotion();
+            }, {once: true});
+        }
+        installPromptHandler();
+
         function showInstallPromotion() {
             console.log("showInstallPromotion");
             alert("showInstallPromotion");
@@ -57,10 +68,11 @@
                 const choiceResult = await deferredPrompt.userChoice;
                 if (choiceResult.outcome === "accepted") {
                     console.log("User accepted the install prompt");
-                    installed = true;
+                    // installed = true;
                     installButton.classList.add("hidden");
                 } else {
                     console.log("User dismissed the install prompt");
+                    installPromptHandler();
                 }
             }, {once: true})
         }
