@@ -35,16 +35,30 @@
         }
 
         let deferredPrompt;
-
-        window.addEventListener('beforeinstallprompt', (e) => {
-            // Prevent the mini-infobar from appearing on mobile
-            e.preventDefault();
-            // Stash the event so it can be triggered later.
-            deferredPrompt = e;
-            // Update UI notify the user they can install the PWA
-            //showInstallPromotion();
-            alert(123);
+        window.addEventListener("beforeinstallprompt", event => {
+            event.preventDefault();
+            deferredPrompt = event;
+            showInstallPromotion();
         });
+
+        function showInstallPromotion() {
+            const installButton = document.querySelector("#install-button");
+            installButton.classList.remove("hidden");
+
+            installButton.addEventListener("click", (e) => {
+                installButton.classList.add("hidden");
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === "accepted") {
+                        alert("User accepted the install prompt");
+                    } else {
+                        alert("User dismissed the install prompt");
+                    }
+                });
+            });
+        }
+
+
     </script>
 
     <script type="module">
@@ -100,6 +114,7 @@
     <p id="can-share" class="hidden warning">Impossible to share this object: </p>
 
     <button id="share-button">Share</button>
+    <button id="install-button" class="hidden">Install</button>
 
     <div id="result"></div>
 </body>
