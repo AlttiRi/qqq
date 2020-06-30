@@ -49,10 +49,10 @@
                 deferredPrompt.prompt();
                 const choiceResult = await deferredPrompt.userChoice;
                 if (choiceResult.outcome === "accepted") {
-                    alert("User accepted the install prompt");
+                    //alert("User accepted the install prompt");
                     installButton.classList.add("hidden");
                 } else {
-                    alert("User dismissed the install prompt");
+                    //alert("User dismissed the install prompt");
                 }
             }, {once: true});
         }
