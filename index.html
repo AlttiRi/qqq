@@ -70,7 +70,7 @@
                 const shareButton = document.querySelector("#share-button");
                 const text = "Qwerty: https://example.com/";
 
-                const file = new File([new Uint8Array([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A])], "0asd123.png", {type: "text/txt"});
+                const file = new File([new Uint8Array([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A])], "0asd123.png", {type: "image/png"});
                 const shareData = {
                     text,
                     files: [file]
@@ -80,10 +80,9 @@
 
                 shareButton.addEventListener("click", async event => {
                     event.preventDefault();
-
-                    alert("click")
                     const resultElem = document.querySelector("#result");
                     try {
+                        resultElem.textContent = "`navigator.share` start";
                         await navigator.share(shareData);
                         resultElem.textContent = "`navigator.share` succeeded.";
                     } catch (error) {
