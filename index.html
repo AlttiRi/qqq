@@ -36,9 +36,13 @@
 
 
         let deferredPrompt;
+        let installed = false;
         window.addEventListener("beforeinstallprompt", event => {
             event.preventDefault();
             deferredPrompt = event;
+            if (installed) {
+                return;
+            }
             showInstallPromotion();
         });
         function showInstallPromotion() {
@@ -53,6 +57,7 @@
                 const choiceResult = await deferredPrompt.userChoice;
                 if (choiceResult.outcome === "accepted") {
                     console.log("User accepted the install prompt");
+                    installed = true;
                     // installButton.classList.add("hidden");
                 } else {
                     console.log("User dismissed the install prompt");
