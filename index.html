@@ -49,8 +49,8 @@
                 const choiceResult = await deferredPrompt.userChoice;
                 if (choiceResult.outcome === "accepted") {
 
-                    installButton.classList.add("hidden");
-                    alert("accepted2")
+                    installButton.classList.add("warning");
+                    alert("accepted3")
                 }
             }, {once: true});
         }
