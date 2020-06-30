@@ -34,15 +34,15 @@
             document.querySelector("#sw-note").classList.remove("hidden");
         }
 
+
         let deferredPrompt;
         window.addEventListener("beforeinstallprompt", event => {
             event.preventDefault();
             deferredPrompt = event;
             showInstallPromotion();
         });
-
         function showInstallPromotion() {
-            const installButton = document.querySelector("#install-button");
+            const installButton = document.querySelector("#install-pwa-button");
             installButton.classList.remove("hidden");
 
             installButton.addEventListener("click", async event => {
@@ -50,9 +50,6 @@
                 const choiceResult = await deferredPrompt.userChoice;
                 if (choiceResult.outcome === "accepted") {
                     installButton.classList.add("hidden");
-                    //alert("User accepted the install prompt");
-                } else {
-                    //alert("User dismissed the install prompt");
                 }
             }, {once: true});
         }
@@ -113,7 +110,7 @@
     <p id="can-share" class="hidden warning">Impossible to share this object: </p>
 
     <button id="share-button">Share</button>
-    <button id="install-button" class="hidden">Install</button>
+    <button id="install-pwa-button" class="hidden">Install as PWA</button>
 
     <div id="result"></div>
 </body>
