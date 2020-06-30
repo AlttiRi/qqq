@@ -35,30 +35,30 @@
         }
 
 
-        let deferredPrompt;
-        function installPromptHandler() {
-            window.addEventListener("beforeinstallprompt", event => {
-                event.preventDefault();
-                deferredPrompt = event;
-                showInstallPromotion();
-            }, {once: true});
-        }
-        function showInstallPromotion() {
-            const installButton = document.querySelector("#install-pwa-button");
-            installButton.classList.remove("hidden");
-            installButton.addEventListener("click", async event => {
-                deferredPrompt.prompt();
-                const choiceResult = await deferredPrompt.userChoice;
-                if (choiceResult.outcome === "accepted") {
-                    console.log("User accepted the install prompt");
-                    installButton.classList.add("hidden");
-                } else {
-                    console.log("User dismissed the install prompt");
-                    installPromptHandler();
-                }
-            }, {once: true})
-        }
-        installPromptHandler();
+        // let deferredPrompt;
+        // function installPromptHandler() {
+        //     window.addEventListener("beforeinstallprompt", event => {
+        //         event.preventDefault();
+        //         deferredPrompt = event;
+        //         showInstallPromotion();
+        //     }, {once: true});
+        // }
+        // function showInstallPromotion() {
+        //     const installButton = document.querySelector("#install-pwa-button");
+        //     installButton.classList.remove("hidden");
+        //     installButton.addEventListener("click", async event => {
+        //         deferredPrompt.prompt();
+        //         const choiceResult = await deferredPrompt.userChoice;
+        //         if (choiceResult.outcome === "accepted") {
+        //             console.log("User accepted the install prompt");
+        //             installButton.classList.add("hidden");
+        //         } else {
+        //             console.log("User dismissed the install prompt");
+        //             installPromptHandler();
+        //         }
+        //     }, {once: true})
+        // }
+        // installPromptHandler();
 
     </script>
 
