@@ -41,9 +41,10 @@ self.addEventListener("fetch", async function(event) {
         const files = mediaFiles.map(file => JSON.stringify({
             name: file.name,
             mtime: file.lastModified,
+            date: new Date(file.lastModified),
             size: file.size,
             type: file.type,
-        }));
+        }, null, " "));
 
         const redirectUrl = new URL(event.request.url);
         redirectUrl.searchParams.append("text", text);
