@@ -43,8 +43,6 @@
                 showInstallPromotion();
             }, {once: true});
         }
-        installPromptHandler();
-
         function showInstallPromotion() {
             const installButton = document.querySelector("#install-pwa-button");
             installButton.classList.remove("hidden");
@@ -60,6 +58,7 @@
                 }
             }, {once: true})
         }
+        installPromptHandler();
 
     </script>
 
