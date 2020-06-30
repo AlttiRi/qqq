@@ -81,6 +81,7 @@
                 shareButton.addEventListener("click", async event => {
                     event.preventDefault();
 
+                    alert("click")
                     const resultElem = document.querySelector("#result");
                     try {
                         await navigator.share(shareData);
@@ -97,8 +98,6 @@
             }
 
             function checkCanShare(data) {
-                alert(navigator.canShare);
-                alert(navigator.canShare(data));
                 if (navigator.canShare && !navigator.canShare(data)) {
                     const canShareElem = document.querySelector("#cant-share");
                     canShareElem.classList.remove("hidden");
@@ -111,7 +110,7 @@
     </script>
 </head>
 <body>
-    <h1>Web Share API demo1</h1>
+    <h1>Web Share API demo2</h1>
 
     <p id="https-note" class="hidden warning">This page requires to be served over HTTPS.</p>
     <p id="sw-note" class="hidden warning">Service worker is not supported.</p>
