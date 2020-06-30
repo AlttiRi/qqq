@@ -44,6 +44,7 @@
         function showInstallPromotion() {
             const installButton = document.querySelector("#install-button");
             installButton.classList.remove("hidden");
+            alert("showInstallPromotion");
 
             installButton.addEventListener("click", async event => {
                 installButton.classList.add("hidden");
