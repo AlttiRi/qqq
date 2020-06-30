@@ -59,6 +59,7 @@
             }, {once: true})
         }
         window.addEventListener("appinstalled", event => {
+            alert("appinstalled")
             const installButton = document.querySelector("#install-pwa-button");
             installButton.classList.add("hidden");
         });
