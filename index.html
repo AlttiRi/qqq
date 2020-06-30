@@ -63,46 +63,49 @@
     </script>
 
     <script type="module">
-        const shareSupported = "share" in navigator;
+        try {
+            const shareSupported = "share" in navigator;
 
-        if(shareSupported) {
-            const shareButton = document.querySelector("#share-button");
-            const text = "Qwerty: https://example.com/";
+            if (shareSupported) {
+                const shareButton = document.querySelector("#share-button");
+                const text = "Qwerty: https://example.com/";
 
-            const file = new File([new Uint8Array([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A])], "0asd123.pdf", {type: "application/pdf"});
-            const shareData = {
-                text,
-                files: [file]
-            };
+                const file = new File([new Uint8Array([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A])], "0asd123.pdf", {type: "application/pdf"});
+                const shareData = {
+                    text,
+                    files: [file]
+                };
 
-            checkCanShare(shareData);
+                checkCanShare(shareData);
 
-            shareButton.addEventListener("click", async event => {
-                event.preventDefault();
+                shareButton.addEventListener("click", async event => {
+                    event.preventDefault();
 
-                const resultElem = document.querySelector("#result");
-                try {
-                    await navigator.share(shareData);
-                    resultElem.textContent = "`navigator.share` succeeded.";
-                } catch (error) {
-                    const msg = "`navigator.share` failed";
-                    resultElem.textContent = `${msg}\n${JSON.stringify(err)}`;
-                }
+                    const resultElem = document.querySelector("#result");
+                    try {
+                        await navigator.share(shareData);
+                        resultElem.textContent = "`navigator.share` succeeded.";
+                    } catch (error) {
+                        const msg = "`navigator.share` failed";
+                        resultElem.textContent = `${msg}\n${JSON.stringify(err)}`;
+                    }
 
-            });
-        } else {
-            document.querySelector("#share-note").classList.remove("hidden");
-            document.querySelector("#share-button").setAttribute("disabled", "");
-        }
-
-        function checkCanShare(data) {
-            if (navigator.canShare && !navigator.canShare(data)) {
-                const canShareElem = document.querySelector("#cant-share");
-                canShareElem.classList.remove("hidden");
-                canShareElem.textContent += JSON.stringify(data);
+                });
+            } else {
+                document.querySelector("#share-note").classList.remove("hidden");
+                document.querySelector("#share-button").setAttribute("disabled", "");
             }
-        }
 
+            function checkCanShare(data) {
+                if (navigator.canShare && !navigator.canShare(data)) {
+                    const canShareElem = document.querySelector("#cant-share");
+                    canShareElem.classList.remove("hidden");
+                    canShareElem.textContent += JSON.stringify(data);
+                }
+            }
+        } catch (error) {
+            alert(error);
+        }
     </script>
 </head>
 <body>
