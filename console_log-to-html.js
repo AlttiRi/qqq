@@ -1,4 +1,4 @@
-globalThis.log = console.log;
+globalThis.log = console.error;
 function htmlLog() {
 
     log(...arguments);
