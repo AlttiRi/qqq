@@ -76,6 +76,9 @@
                     files: [file]
                 };
 
+                console.log = alert;
+                console.error = alert;
+                console.warn = alert;
                 checkCanShare(shareData);
 
                 shareButton.addEventListener("click", async event => {
