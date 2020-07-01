@@ -83,18 +83,18 @@
                 shareButton.addEventListener("click", async event => {
                     event.preventDefault();
                     const resultElem = document.querySelector("#result");
-                    // try {
+                    try {
                         resultElem.textContent = `"navigator.share" started`;
                         console.log(`"navigator.share" started`);
                         await navigator.share(shareData);
                         resultElem.textContent = `"navigator.share" succeeded`;
                         console.log(`"navigator.share" succeeded`);
-                    // } catch (error) {
-                    //     const message = `"navigator.share" failed`;
-                    //     const errorText = `${error.name}: "${error.message}"`;
-                    //     console.error(message, errorText);
-                    //     resultElem.textContent = message + "\n" + errorText;
-                    // }
+                    } catch (error) {
+                        const message = `"navigator.share" failed`;
+                        const errorText = `${error.name}: "${error.message}"`;
+                        console.error(message, errorText);
+                        resultElem.textContent = message + "\n" + errorText;
+                    }
                 });
             } else {
                 document.querySelector("#share-note").classList.remove("hidden");
