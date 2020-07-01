@@ -78,17 +78,18 @@
                     files: [file]
                 };
 
-                checkCanShare(shareData);
-
                 shareButton.addEventListener("click", async event => {
                     event.preventDefault();
                     const resultElem = document.querySelector("#result");
                     try {
-                        resultElem.textContent = "`navigator.share` start";
+                        resultElem.textContent = `"navigator.share" started`;
+                        console.log(`"navigator.share" started`);
                         await navigator.share(shareData);
-                        resultElem.textContent = "`navigator.share` succeeded.";
+                        resultElem.textContent = `"navigator.share" succeeded`;
+                        console.log(`"navigator.share" succeeded`);
                     } catch (error) {
-                        const msg = "`navigator.share` failed";
+                        const msg = `"navigator.share" failed`;
+                        console.error(`${msg}\n${JSON.stringify(err)}`);
                         resultElem.textContent = `${msg}\n${JSON.stringify(err)}`;
                     }
 
