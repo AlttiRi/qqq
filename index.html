@@ -87,7 +87,7 @@
                         resultElem.textContent = `"navigator.share" started`;
                         console.log(`"navigator.share" started`);
                         await navigator.share(shareData)
-                            .catch(error => console.error("error", error.message));
+                            .catch(error => console.error("error", error.message, error.name));
                         resultElem.textContent = `"navigator.share" succeeded`;
                         console.log(`"navigator.share" succeeded`);
                     } catch (error) {
