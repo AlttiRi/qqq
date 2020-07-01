@@ -86,7 +86,8 @@
                     try {
                         resultElem.textContent = `"navigator.share" started`;
                         console.log(`"navigator.share" started`);
-                        await navigator.share(shareData);
+                        await navigator.share(shareData)
+                            .catch(error => console.error(error));
                         resultElem.textContent = `"navigator.share" succeeded`;
                         console.log(`"navigator.share" succeeded`);
                     } catch (error) {
@@ -114,7 +115,7 @@
     </script>
 </head>
 <body>
-    <h1>Web Share API demo6</h1>
+    <h1>Web Share API demo7</h1>
 
     <p id="https-note" class="hidden warning">This page requires to be served over HTTPS.</p>
     <p id="sw-note" class="hidden warning">Service worker is not supported.</p>
