@@ -90,9 +90,10 @@
                         resultElem.textContent = `"navigator.share" succeeded`;
                         console.log(`"navigator.share" succeeded`);
                     } catch (error) {
-                        const message = `"navigator.share" failed\n${error}"`;
-                        console.error(message);
-                        resultElem.textContent = message;
+                        const message = `"navigator.share" failed`;
+                        const errorText = `${error.name}: "${error.message}"`;
+                        console.error(message, errorText);
+                        resultElem.textContent = message + "\n" + errorText;
                     }
                 });
             } else {
@@ -113,7 +114,7 @@
     </script>
 </head>
 <body>
-    <h1>Web Share API demo3</h1>
+    <h1>Web Share API demo2</h1>
 
     <p id="https-note" class="hidden warning">This page requires to be served over HTTPS.</p>
     <p id="sw-note" class="hidden warning">Service worker is not supported.</p>
