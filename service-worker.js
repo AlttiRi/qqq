@@ -13,15 +13,21 @@ async function postMessage(message) {
 }
 
 
-self.addEventListener("install", async event => {
-    console.log("👷", "install", event);
-    return self.skipWaiting();
+self.addEventListener("install", event => {
+    const handler = async event => {
+        console.log("👷", "install", event);
+        return self.skipWaiting();
+    }
+    event.waitUntil(handler(event));
 });
 
 self.addEventListener("activate", async event => {
-    console.log("👷", "activate", event);
-    await postMessage("activated");
-    return self.clients.claim();
+    const handler = async event => {
+        console.log("👷", "activate", event);
+        await postMessage("activated");
+        return self.clients.claim();
+    }
+    event.waitUntil(handler(event));
 });
 
 self.addEventListener("fetch", async event => {
