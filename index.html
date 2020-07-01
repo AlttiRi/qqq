@@ -87,15 +87,13 @@
                         resultElem.textContent = `"navigator.share" started`;
                         console.log(`"navigator.share" started`);
                         await navigator.share(shareData);
-                            //.catch(error => console.error("error", error.message, error.name));
                         resultElem.textContent = `"navigator.share" succeeded`;
                         console.log(`"navigator.share" succeeded`);
                     } catch (error) {
-                        const msg = `"navigator.share" failed`;
-                        console.error(`${msg}\n${JSON.stringify(error)}`);
-                        resultElem.textContent = `${msg}\n${JSON.stringify(error)}`;
+                        const message = `"navigator.share" failed\n${error.name}:"${error.message}"`;
+                        console.error(message);
+                        resultElem.textContent = message;
                     }
-
                 });
             } else {
                 document.querySelector("#share-note").classList.remove("hidden");
@@ -115,7 +113,7 @@
     </script>
 </head>
 <body>
-    <h1>Web Share API demo1</h1>
+    <h1>Web Share API demo2</h1>
 
     <p id="https-note" class="hidden warning">This page requires to be served over HTTPS.</p>
     <p id="sw-note" class="hidden warning">Service worker is not supported.</p>
