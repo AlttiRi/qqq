@@ -78,6 +78,8 @@
                     files: [file]
                 };
 
+                checkCanShare(shareData);
+
                 shareButton.addEventListener("click", async event => {
                     event.preventDefault();
                     const resultElem = document.querySelector("#result");
@@ -112,7 +114,7 @@
     </script>
 </head>
 <body>
-    <h1>Web Share API demo5</h1>
+    <h1>Web Share API demo6</h1>
 
     <p id="https-note" class="hidden warning">This page requires to be served over HTTPS.</p>
     <p id="sw-note" class="hidden warning">Service worker is not supported.</p>
