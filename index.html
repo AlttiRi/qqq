@@ -99,8 +99,7 @@
             }
 
             function checkCanShare(data) {
-                alert(navigator.canShare({files: data.files}))
-                if (navigator.canShare && !navigator.canShare({files: data.files})) {
+                if (navigator.canShare && !navigator.canShare(data)) {
                     const canShareElem = document.querySelector("#cant-share");
                     canShareElem.classList.remove("hidden");
                     canShareElem.textContent += JSON.stringify(data);
