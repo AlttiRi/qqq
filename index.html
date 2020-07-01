@@ -26,7 +26,6 @@
             navigator.serviceWorker
                 .register("./service-worker.js")
                 .then(_ => {
-                    document.querySelector("#sw-reg-note").classList.remove("hidden");
                     console.log("Service worker was registered");
                 });
 
@@ -82,18 +81,14 @@
 
                 shareButton.addEventListener("click", async event => {
                     event.preventDefault();
-                    const resultElem = document.querySelector("#result");
                     try {
-                        resultElem.textContent = `"navigator.share" started`;
                         console.log(`"navigator.share" started`);
                         await navigator.share(shareData);
-                        resultElem.textContent = `"navigator.share" succeeded`;
                         console.log(`"navigator.share" succeeded`);
                     } catch (error) {
                         const message = `"navigator.share" failed`;
                         const errorText = `${error.name}: "${error.message}"`;
                         console.error(message, errorText);
-                        resultElem.textContent = message + "\n" + errorText;
                     }
                 });
             } else {
@@ -114,13 +109,12 @@
     </script>
 </head>
 <body>
-    <h1>Web Share API demo1</h1>
+    <h1>Web Share API demo</h1>
 
-    <p id="https-note" class="hidden warning">This page requires to be served over HTTPS.</p>
-    <p id="sw-note" class="hidden warning">Service worker is not supported.</p>
-    <p id="sw-reg-note" class="hidden">Service worker was registered.</p>
-    <p id="share-note" class="hidden warning">Web Share API is not supported.</p>
-    <p id="cant-share" class="hidden warning">Impossible to share this object: </p>
+    <p id="https-note" class="hidden error">This page requires to be served over HTTPS.</p>
+    <p id="sw-note" class="hidden error">Service worker is not supported.</p>
+    <p id="share-note" class="hidden error">Web Share API is not supported.</p>
+    <p id="cant-share" class="hidden error">Impossible to share this object: </p>
 
     <button id="share-button">Share</button>
     <button id="install-pwa-button" class="hidden">Install as PWA</button>
