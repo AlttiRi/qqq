@@ -90,7 +90,7 @@
                         resultElem.textContent = `"navigator.share" succeeded`;
                         console.log(`"navigator.share" succeeded`);
                     } catch (error) {
-                        const message = `"navigator.share" failed\n${error.name}:"${error.message}"`;
+                        const message = `"navigator.share" failed\n${error}"`;
                         console.error(message);
                         resultElem.textContent = message;
                     }
