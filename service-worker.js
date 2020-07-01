@@ -15,7 +15,6 @@ async function postMessage(message) {
 
 self.addEventListener("install", async event => {
     console.log("👷", "install", event);
-
     return self.skipWaiting();
 });
 

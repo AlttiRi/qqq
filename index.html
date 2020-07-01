@@ -22,26 +22,24 @@
         }
 
         if (serviceWorkerSupported) {
-            console.log("Registering of service worker");
+            console.log("Registering of service worker...");
             navigator.serviceWorker
                 .register("./service-worker.js")
                 .then(registration => {
-
-                    console.log("Service worker was registered");
+                    console.log("Service worker registration completed");
                     registration.addEventListener("updatefound", event => {
                         console.warn("SW: update found");
                     });
-
                 })
                 .catch(error => console.error("Service worker registration failed", error.name + error.message));
-
-            navigator.serviceWorker.addEventListener("message", event => {
-                console.warn(`SW: ${event.data}`);
-            });
 
             navigator.serviceWorker.addEventListener("controllerchange", event => {
                 console.warn("SW: controller changed");
             });
+            navigator.serviceWorker.addEventListener("message", event => {
+                console.warn(`SW: ${event.data}`);
+            });
+
         } else {
             document.querySelector("#sw-note").classList.remove("hidden");
         }
