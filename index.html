@@ -31,7 +31,7 @@
                 .catch(error => console.error("Service worker registration failed", error.name + error.message));
 
             navigator.serviceWorker.addEventListener("message", event => {
-                console.log(`The message from SW: ${event.data}`);
+                console.warn(`The message from SW: ${event.data}`);
             });
         } else {
             document.querySelector("#sw-note").classList.remove("hidden");
