@@ -25,8 +25,13 @@ pre {
 }
 
 .warning {
-    color: #ff4000;
+    color: #cc7700;
     font-weight: bold
+}
+
+.error {
+    color: #ff3311;
+    font-weight: bold;
 }
 
 button[disabled] {
