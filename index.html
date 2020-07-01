@@ -82,13 +82,13 @@
                 shareButton.addEventListener("click", async event => {
                     event.preventDefault();
                     try {
-                        console.log(`"navigator.share" started`);
                         await navigator.share(shareData);
                         console.log(`"navigator.share" succeeded`);
                     } catch (error) {
-                        const message = `"navigator.share" failed`;
-                        const errorText = `${error.name}: "${error.message}"`;
-                        console.error(message, errorText);
+                        console.error(
+                            `"navigator.share" failed`,
+                            `${error.name}: "${error.message}"`
+                        );
                     }
                 });
             } else {
