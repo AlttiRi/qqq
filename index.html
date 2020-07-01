@@ -25,12 +25,14 @@
             console.log("Registering of service worker");
             navigator.serviceWorker
                 .register("./service-worker.js")
-                .then(_ => {
+                .then(registration => {
                     console.log("Service worker was registered");
-                });
+                })
+                .catch(error => console.error("Service worker registration failed", error.name + error.message));
 
-            //navigator.serviceWorker.addEventListener("message", message => console.log(message));
-
+            navigator.serviceWorker.addEventListener("message", event => {
+                console.log(`The message from SW: ${event.data}`);
+            });
         } else {
             document.querySelector("#sw-note").classList.remove("hidden");
         }

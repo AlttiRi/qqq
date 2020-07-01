@@ -6,20 +6,26 @@ const offlineHtml =
 </html>`;
 
 
+async function postMessage(message) {
+    const clients = await self.clients.matchAll({type: "window"});
+    console.log(clients);
+    clients.forEach(client => client.postMessage(message));
+}
 
-self.addEventListener("install", (event) => {
-  console.log("👷", "install", event);
-  self.skipWaiting();
+
+self.addEventListener("install", async event => {
+    console.log("👷", "install", event);
+    return self.skipWaiting();
 });
 
-self.addEventListener("activate", (event) => {
-  console.log("👷", "activate", event);
-  return self.clients.claim();
+self.addEventListener("activate", async event => {
+    console.log("👷", "activate", event);
+    await postMessage("activated");
+    return self.clients.claim();
 });
 
-self.addEventListener("fetch", async function(event) {
+self.addEventListener("fetch", async event => {
     console.log("👷", "fetch", event);
-    
 
     if (event.request.method !== "POST") {
         return event.respondWith((async () => {
@@ -31,7 +37,6 @@ self.addEventListener("fetch", async function(event) {
             }
         })());
     }
-
 
     return event.respondWith((async () => {
         const formData = await event.request.formData();
