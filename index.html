@@ -11,6 +11,8 @@
 
     <link rel="stylesheet" href="./style.css">
 
+    <script src="./console_log-to-html.js"></script>
+
     <script type="module">
         const serviceWorkerSupported = "serviceWorker" in navigator;
         const isSecureHost = location.protocol === "https:" || location.hostname === "127.0.0.1" || location.hostname === "localhost";
@@ -76,12 +78,7 @@
                     files: [file]
                 };
 
-
-                console.log = alert;
-                console.error = alert;
-                console.warn = alert;
                 checkCanShare(shareData);
-                //console.log(56)
 
                 shareButton.addEventListener("click", async event => {
                     event.preventDefault();
@@ -127,5 +124,6 @@
     <button id="install-pwa-button" class="hidden">Install as PWA</button>
 
     <div id="result"></div>
+    <div id="console_log-to-html"></div>
 </body>
 </html>
