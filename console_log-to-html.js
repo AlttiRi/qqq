@@ -1,4 +1,4 @@
-globalThis.log = console.error;
+globalThis.log = console.log;
 function htmlLog() {
 
     log(...arguments);
@@ -66,3 +66,5 @@ function toString(argument) {
 }
 
 console.log = htmlLog;
+console.error = htmlLog;
+console.warn = htmlLog;
