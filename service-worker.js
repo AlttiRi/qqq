@@ -21,7 +21,7 @@ self.addEventListener("install", event => {
     event.waitUntil(handler(event));
 });
 
-self.addEventListener("activate", async event => {
+self.addEventListener("activate", event => {
     const handler = async event => {
         console.log("👷", "activate", event);
         await postMessage("activated");
@@ -30,7 +30,7 @@ self.addEventListener("activate", async event => {
     event.waitUntil(handler(event));
 });
 
-self.addEventListener("fetch", async event => {
+self.addEventListener("fetch", event => {
     console.log("👷", "fetch", event);
 
     if (event.request.method !== "POST") {
