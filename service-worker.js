@@ -15,7 +15,7 @@ async function postMessage(message) {
 
 self.addEventListener("install", event => {
     const handler = async event => {
-        console.log("👷", "install", event);
+        console.log("SW: install", event);
         return self.skipWaiting();
     }
     event.waitUntil(handler(event));
@@ -23,7 +23,7 @@ self.addEventListener("install", event => {
 
 self.addEventListener("activate", event => {
     const handler = async event => {
-        console.log("👷", "activate", event);
+        console.log("SW: activate", event);
         await postMessage("activated");
         return self.clients.claim();
     }
@@ -31,7 +31,7 @@ self.addEventListener("activate", event => {
 });
 
 self.addEventListener("fetch", event => {
-    console.log("👷", "fetch", event);
+    console.log("SW: fetch", event);
 
     if (event.request.method !== "POST") {
         return event.respondWith((async () => {
