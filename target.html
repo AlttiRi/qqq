@@ -38,8 +38,9 @@
             document.querySelector("#text").textContent = parsedUrl.searchParams.get("text");
             document.querySelector("#files").textContent = parsedUrl.searchParams.get("files");
 
-            // document.querySelector("#title").textContent = parsedUrl.searchParams.get("title");
-            // document.querySelector("#url").textContent = parsedUrl.searchParams.get("url");
+            const files = parsedUrl.searchParams.get("files");
+            console.log(JSON.parse(files));
+            alert(!!JSON.parse(files));
         });
     </script>
 </head>
@@ -52,9 +53,6 @@
     <b>window.location:</b> <div id="href"></div><br>
     <b>Text:</b> <div id="text"></div><br>
     <b>Files:</b> <pre id="files"></pre><br>
-
-<!--    <b>Title:</b> <div id="title"></div><br>-->
-<!--    <b>Url:</b> <div id="url"></div><br>-->
 
 </body>
 </html>
