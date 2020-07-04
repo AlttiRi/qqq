@@ -139,9 +139,11 @@
                 const size = response.headers.get("content-length");
                 const mtime = response.headers.get("last-modified");
 
+                const headers = [];
                 for(const [header, value] of response.headers.entries()) {
-                    console.log(header + ": " + value);
+                    headers.push(header + ": " + value);
                 }
+                console.log(...headers);
 
                 console.log(blob.size + " bytes", mtime);
                 totalSize += blob.size;
