@@ -35,11 +35,11 @@ self.addEventListener("fetch", event => {
 
     if (event.request.method !== "POST") {
         return event.respondWith((async () => {
-            // const cache = await caches.open("images");
-            // const resp = await cache.match(event.request.url);
-            // if (resp) {
-            //     return resp;
-            // }
+            const cache = await caches.open("images");
+            const resp = await cache.match(event.request.url);
+            if (resp) {
+                return resp;
+            }
 
             try {
                 return await fetch(event.request);
@@ -64,16 +64,16 @@ self.addEventListener("fetch", event => {
         }));
 
 
-        // const cache = await caches.open("images");
-        // for (const file of mediaFiles) {
-        //     const resp = new Response(file, {
-        //         headers: {
-        //             "last-modified": file.lastModified,
-        //             "content-length": file.size
-        //         }
-        //     });
-        //     await cache.put(file.name, resp);
-        // }
+        const cache = await caches.open("images");
+        for (const file of mediaFiles) {
+            const resp = new Response(file, {
+                headers: {
+                    "last-modified": file.lastModified,
+                    "content-length": file.size
+                }
+            });
+            await cache.put(file.name, resp);
+        }
 
 
         const redirectUrl = new URL(event.request.url);

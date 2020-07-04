@@ -38,8 +38,13 @@
             document.querySelector("#text").textContent = parsedUrl.searchParams.get("text");
 
             const files = JSON.parse(parsedUrl.searchParams.get("files"));
-            document.querySelector("#files").textContent = JSON.stringify(files, null, " ");
+            if (files) {
+                document.querySelector("#files").textContent = JSON.stringify(files, null, " ");
 
+                const image = document.createElement("img");
+                image.src = files[0].name;
+                document.querySelector("body").append(image);
+            }
         });
     </script>
 </head>
