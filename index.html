@@ -130,12 +130,15 @@
             const cache = await caches.open("images");
             const requests = await cache.keys();
 
+            let totalSize = 0;
             for (const request of requests) {
                 const response = await cache.match(request);
-                const size = (await response.blob()).size;
+                const blob = await response.blob();
 
-                console.log(size);
+                console.log(blob.size);
+                totalSize += blob.size;
             }
+            console.log("totalSize: " + totalSize);
         }();
     </script>
 </head>
