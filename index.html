@@ -132,10 +132,12 @@
 
             let totalSize = 0;
             for (const request of requests) {
+                console.log(request.url);
+
                 const response = await cache.match(request);
                 const blob = await response.blob();
 
-                console.log(blob.size);
+                console.log(blob.size + " bytes");
                 totalSize += blob.size;
             }
             console.log("totalSize: " + totalSize);
