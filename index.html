@@ -130,25 +130,21 @@
             const cache = await caches.open("images");
             const requests = await cache.keys();
 
-            let totalSize = 0;
+            const images = []
             for (const request of requests) {
-                console.log(request.url);
+                const filename = request.url.match(/[^\/]+$/)[0];
 
                 const response = await cache.match(request);
+                const type = response.headers.get("content-type");
+                //const size = response.headers.get("content-length");
+                const lastModified = Number(response.headers.get("last-modified"));
+
                 const blob = await response.blob();
-                const size = response.headers.get("content-length");
-                const mtime = response.headers.get("last-modified");
-
-                const headers = [];
-                for(const [header, value] of response.headers.entries()) {
-                    headers.push(header + ": " + value);
-                }
-                console.log(...headers);
-
-                console.log(blob.size + " bytes, "+ mtime);
-                totalSize += blob.size;
+                const image = new File([blob], filename, {type, lastModified})
+                images.push(image);
             }
-            console.log("totalSize: " + totalSize + " bytes");
+
+            console.log(`Total size (${images.length}): ${images.reduce((pre, cur) => pre + cur.size, 0)} bytes`);
         }();
     </script>
 </head>
