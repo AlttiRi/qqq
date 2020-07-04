@@ -136,8 +136,14 @@
 
                 const response = await cache.match(request);
                 const blob = await response.blob();
+                const size = response.headers.get("content-length");
+                const mtime = response.headers.get("last-modified");
 
-                console.log(blob.size + " bytes");
+                for(const [header, value] of response.headers.entries()) {
+                    console.log(header + ": " + value);
+                }
+
+                console.log(blob.size + " bytes", mtime);
                 totalSize += blob.size;
             }
             console.log("totalSize: " + totalSize + " bytes");
