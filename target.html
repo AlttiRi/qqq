@@ -36,11 +36,10 @@
             const parsedUrl = new URL(window.location);
 
             document.querySelector("#text").textContent = parsedUrl.searchParams.get("text");
-            document.querySelector("#files").textContent = parsedUrl.searchParams.get("files");
 
-            const files = parsedUrl.searchParams.get("files");
-            console.log(JSON.parse(files));
-            alert(!!JSON.parse(files));
+            const files = JSON.parse(parsedUrl.searchParams.get("files"));
+            document.querySelector("#files").textContent = JSON.stringify(files, null, " ");
+
         });
     </script>
 </head>
