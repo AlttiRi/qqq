@@ -128,9 +128,11 @@
     <script type="module">
         !async function wrapper() {
             const cache = await caches.open("images");
-            const keys = await cache.keys();
+            const requests = await cache.keys();
 
-            keys.forEach(entry => console.log(entry));
+            for (const request of requests) {
+                console.log(await cache.match(request));
+            }
         }();
     </script>
 </head>
