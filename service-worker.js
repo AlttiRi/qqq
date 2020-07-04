@@ -49,13 +49,13 @@ self.addEventListener("fetch", event => {
         const text = formData.get("text") || "";
 
         const mediaFiles = formData.getAll("images") || [];
-        const files = mediaFiles.map(file => JSON.stringify({
+        const files = mediaFiles.map(file => ({
             name: file.name,
             mtime: file.lastModified,
             date: new Date(file.lastModified),
             size: file.size,
             type: file.type,
-        }, null, " "));
+        }));
 
         const redirectUrl = new URL(event.request.url);
         redirectUrl.searchParams.append("text", text);
