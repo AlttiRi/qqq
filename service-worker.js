@@ -59,7 +59,7 @@ self.addEventListener("fetch", event => {
 
         const redirectUrl = new URL(event.request.url);
         redirectUrl.searchParams.append("text", text);
-        redirectUrl.searchParams.append("files", files.toString());
+        redirectUrl.searchParams.append("files", JSON.stringify(files));
 
         return Response.redirect(redirectUrl.toString(), 303);
     })());
