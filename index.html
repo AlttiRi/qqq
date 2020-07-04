@@ -131,7 +131,10 @@
             const requests = await cache.keys();
 
             for (const request of requests) {
-                console.log(await cache.match(request));
+                const response = await cache.match(request);
+                const size = (await response.blob()).size;
+
+                console.log(size);
             }
         }();
     </script>
