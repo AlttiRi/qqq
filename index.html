@@ -124,6 +124,15 @@
             console.error(error);
         }
     </script>
+
+    <script type="module">
+        !async function wrapper() {
+            const cache = await caches.open("images");
+            const keys = await cache.keys();
+
+            keys.forEach(entry => console.log(entry));
+        }();
+    </script>
 </head>
 <body>
     <h1>Web Share API demo</h1>
